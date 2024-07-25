@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function pattern(){
+            var a=parseInt(document.getElementById("num").value);
+            let result = "";
+            for(var row=1;row<=a;row++){
+                for(var col=1;col<=row;col++){
+                    result = result +"* "
+                }
+                 result = result +"<br>"
+            }
+            document.getElementById("result").innerHTML = result;
+        }
+    </script>
+</head>
+<body>
+   Enter the Number <input type="text" name="" id="num">
+   <button onclick="pattern()">Click</button>
+   <div id="result"></div>
+</body>
+</html>

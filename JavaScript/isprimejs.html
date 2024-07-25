@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function isprime() {
+            var num=parseInt(document.getElementById("num").value);
+                if(num%2==0){
+                    document.getElementById("result").innerHTML="Not a prime number";
+                }
+                else{
+                    document.getElementById("result").innerHTML="Prime number";
+                    }
+                
+        }
+    </script>
+</head>
+<body>
+    Enter the no <input type="text" name="" id="num" >
+    <input type="button" value="check" onclick="isprime()">
+    <p id="result"></p>
+    
+</body>
+</html>

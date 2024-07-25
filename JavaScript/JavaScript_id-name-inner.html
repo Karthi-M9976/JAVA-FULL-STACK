@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function calculator(){
+            var a = parseInt(document.getElementById("n1").value);
+            var b = parseInt(document.getElementById("n2").value);
+            var op=document.getElementById("op").value;
+            var result="";
+            if(op=="add"){
+                result=parseInt(a)+parseInt(b);
+                }
+            if(op=="sub"){
+                result="Subtraction :" + (a-b);
+            }
+            if(op=="mul"){
+                result="Multiplication :" + (a*b);
+                }
+                if(op=="div"){
+                    result="Division :" + (a/b);
+                    }
+                    document.getElementById("resultdiv").innerHTML="<font color='green'><b>" + result + "</b></font>";
+
+        }
+    </script>
+</head>
+<body>
+    Enter First name <input type="text" name="" id="n1"/>
+    <br>
+    Enter Last name <input type="text" name="" id="n2"/>
+    <br>
+    Select Operation<select id="op">
+        <option value="add">Add</option>
+        <option value="sub">Sub</option>
+        <option value="mul">Mul</option>
+        <option value="div">Div</option>
+    </select>
+    <br>
+    <button onclick="calculator()">Click</button>
+    <div id="resultdiv"></div>
+</body>
+</html>

@@ -14,6 +14,14 @@
         }
          
     </style>
+    <script>
+        function cal(val){
+            document.getElementById('result').value += val
+
+return val
+
+}
+    </script>
 </head>
 <body>
     <center>
@@ -26,43 +34,43 @@
             
             <tr align="center" style="background-color: rgb(42, 155, 155); color: aliceblue; padding: 10px;  border-radius: 25px">
                 
-                <td>C</td>
-                <td >%</td>
-                <td><=</td>
+                <td><button onclick="cal()">C</button></td>
+                <td ><button onclick="cal()">%</button></td>
+                <td><button onclick="cal()"><=</button></td>
                 <td>/</td>
             
             </tr>
             <tr align="center" style="background-color: rgb(39, 168, 168); color: aliceblue;">
                 
-                <td>7 </td>
-                <td>8</td>
-                <td>9</td>
-                <td>*</td>
+                <td><button onclick="cal()">7</button> </td>
+                <td><button onclick="cal()">8</button></td>
+                <td><button onclick="cal()">9</button></td>
+                <td><button onclick="cal()">*</button></td>
             </tr>
             
             <tr align="center" style="background-color: rgb(39, 168, 168); color: aliceblue;">
                 
-                <td>4</td>
-                <td>5</td>
-                <td>6</td>
-                <td>-</td>
+                <td><button onclick="cal()">4</button></td>
+                <td><button onclick="cal()">5</button></td>
+                <td><button onclick="cal()">6</button></td>
+                <td><button onclick="cal()">-</button></td>
                 
                 
             </tr>
             <tr align="center" style="background-color: rgb(39, 168, 168); color: aliceblue;">
                 
-                <td>1</td>
-                <td>2</td>
-                <td>3</td>
-                <td>+</td>
+                <td><button value="1" onclick="cal()">1</button></td>
+                <td><button value="2" onclick="cal()">2</button></td>
+                <td><button value="3" onclick="cal()">3</button></td>
+                <td><button value="+" onclick="cal()">+</button></td>
                 
             </tr>
             <tr align="center" style="background-color: rgb(39, 168, 168); color: aliceblue;">
                 
-                <td>00</td>
-                <td>0</td>
-                <td>.</td>
-                <td>=</td>
+                <td><button onclick="cal()">00</button></td>
+                <td><button onclick="cal()">0</button></td>
+                <td><button onclick="cal()">.</button></td>
+                <td><button  onclick="cal()">=</button></td>
                 
             </tr>
 

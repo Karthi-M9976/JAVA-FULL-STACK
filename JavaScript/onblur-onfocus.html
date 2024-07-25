@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function factorial() {
+            var num = parseInt(document.getElementById("num").value);
+            var fact = 1;
+            for (var i = 1; i <= num; i++) {
+                fact = fact * i;
+                }
+                document.getElementById("result").innerHTML = fact;
+        }
+    </script>
+</head>
+<body>
+    Enter the number <input type="text" name="" id="num" value="Enter the positive no" onfocus="this.value=''" onblur="factorial()"/>
+    
+    <p id="result"></p>
+</body>
+</html>
