@@ -1,0 +1,400 @@
+
+SQL*Plus: Release 11.2.0.2.0 Production on Wed Aug 7 09:49:59 2024
+
+Copyright (c) 1982, 2014, Oracle.  All rights reserved.
+
+SQL> connect system
+Enter password:
+Connected.
+SQL> create table tbl_employee(eid number(5), ename varchar2(20),esalary number(5));
+
+Table created.
+
+SQL> desc tbl_employee
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EID                                                NUMBER(5)
+ ENAME                                              VARCHAR2(20)
+ ESALARY                                            NUMBER(5)
+
+SQL> insert into tbl_employee values (101,'karthi',40000);
+
+1 row created.
+
+SQL> insert into tbl_employee values (102,'dharun',40000);
+
+1 row created.
+
+SQL> insert into tbl_employee values (103,'kabi',40000);
+
+1 row created.
+
+SQL> desc tbl_employee
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EID                                                NUMBER(5)
+ ENAME                                              VARCHAR2(20)
+ ESALARY                                            NUMBER(5)
+
+SQL> select * from tbl_employee
+  2
+SQL> select * from tbl_employee
+  2
+SQL> select * from tbl_employee;
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       101 karthi                    40000
+       102 dharun                    40000
+       103 kabi                      40000
+
+SQL> commit
+  2  commit;
+commit
+*
+ERROR at line 2:
+ORA-02185: a token other than WORK follows COMMIT
+
+
+SQL> commit;
+
+Commit complete.
+
+SQL> select eid,esalary from tbl_employee;
+
+       EID    ESALARY
+---------- ----------
+       101      40000
+       102      40000
+       103      40000
+
+SQL> insert into tbl_employee values (101,'vimal',6000);
+
+1 row created.
+
+SQL> select distinct eid from tbl_employee;
+
+       EID
+----------
+       102
+       101
+       103
+
+SQL> select * from tbl_employee where esalary>4000;
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       101 karthi                    40000
+       102 dharun                    40000
+       103 kabi                      40000
+       101 vimal                      6000
+
+SQL> select * from tbl_employee where esalary between 2000 and 6000;
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       101 vimal                      6000
+
+SQL> select * from tbl_employee where esalary not between 2000 and 6000;
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       101 karthi                    40000
+       102 dharun                    40000
+       103 kabi                      40000
+
+SQL> select * from tbl_emplyoee where esalary >= 2000 and eid in (101,103)
+  2
+SQL> select * from tbl_emplyoee where esalary >= 2000 and eid in (101,103)
+  2
+SQL> select * from tbl_emplyoee where esalary >= 2000 and eid in (101,103);
+select * from tbl_emplyoee where esalary >= 2000 and eid in (101,103)
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> select * from tbl_emplyoee where esalary > = 4000 and eid in (101,103);
+select * from tbl_emplyoee where esalary > = 4000 and eid in (101,103)
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> desc tbl_employee;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EID                                                NUMBER(5)
+ ENAME                                              VARCHAR2(20)
+ ESALARY                                            NUMBER(5)
+
+SQL> select * from tbl_employee;
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       101 karthi                    40000
+       102 dharun                    40000
+       103 kabi                      40000
+       101 vimal                      6000
+
+SQL> select * from tbl_emplyoee where esalary >= 2000 and eid in (101,103);
+select * from tbl_emplyoee where esalary >= 2000 and eid in (101,103)
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> select * from tbl_emplyoee where esalary >= 2000 or eid in (101,103);
+select * from tbl_emplyoee where esalary >= 2000 or eid in (101,103)
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> select distinct eid from tbl_employee;
+
+       EID
+----------
+       102
+       101
+       103
+
+SQL> select * from tbl_employee where ename like 'k%';
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       101 karthi                    40000
+       103 kabi                      40000
+
+SQL> select * from tbl_employee where ename not like '_a%';
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       102 dharun                    40000
+       101 vimal                      6000
+
+SQL> select * from tbl_employee where ename  like '%a%';
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       101 karthi                    40000
+       102 dharun                    40000
+       103 kabi                      40000
+       101 vimal                      6000
+
+SQL> select * from tbl_employee where ename  like '%r';
+
+no rows selected
+
+SQL> select * from tbl_employee where ename  like '%r%';
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       101 karthi                    40000
+       102 dharun                    40000
+
+SQL> insert into tbl_employee(eid,esalary) values (501,2000);
+
+1 row created.
+
+SQL> select * from tbl_employee;
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       101 karthi                    40000
+       102 dharun                    40000
+       103 kabi                      40000
+       101 vimal                      6000
+       501                            2000
+
+SQL> select * from tbl_employee where ename  is null;
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       501                            2000
+
+SQL> select * from tbl_employee where ename  not is null;
+select * from tbl_employee where ename  not is null
+                                            *
+ERROR at line 1:
+ORA-00920: invalid relational operator
+
+
+SQL> select * from tbl_employee where ename is not null;
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       101 karthi                    40000
+       102 dharun                    40000
+       103 kabi                      40000
+       101 vimal                      6000
+
+SQL> select * from tbl_employee order by eid;
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       101 karthi                    40000
+       101 vimal                      6000
+       102 dharun                    40000
+       103 kabi                      40000
+       501                            2000
+
+SQL> select * from tbl_employee order by eid desc;
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       501                            2000
+       103 kabi                      40000
+       102 dharun                    40000
+       101 karthi                    40000
+       101 vimal                      6000
+
+SQL> select * from tbl_employee order by ename;
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       102 dharun                    40000
+       103 kabi                      40000
+       101 karthi                    40000
+       101 vimal                      6000
+       501                            2000
+
+SQL> select * from tbl_employee order by ename desc;
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       501                            2000
+       101 vimal                      6000
+       101 karthi                    40000
+       103 kabi                      40000
+       102 dharun                    40000
+
+SQL> select * from tbl_employee order by eid,ename ;
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       101 karthi                    40000
+       101 vimal                      6000
+       102 dharun                    40000
+       103 kabi                      40000
+       501                            2000
+
+SQL> select * from tbl_employee order by eid,ename desc;
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       101 vimal                      6000
+       101 karthi                    40000
+       102 dharun                    40000
+       103 kabi                      40000
+       501                            2000
+
+SQL> alter table tbl_employee add doj date;
+
+Table altered.
+
+SQL> select * from tbl_employee;
+
+       EID ENAME                   ESALARY DOJ
+---------- -------------------- ---------- ---------
+       101 karthi                    40000
+       102 dharun                    40000
+       103 kabi                      40000
+       101 vimal                      6000
+       501                            2000
+
+SQL> update tbl_employee set doj=sysdate where eid=103;
+
+1 row updated.
+
+SQL> select * from tbl_employee;
+
+       EID ENAME                   ESALARY DOJ
+---------- -------------------- ---------- ---------
+       101 karthi                    40000
+       102 dharun                    40000
+       103 kabi                      40000 07-AUG-24
+       101 vimal                      6000
+       501                            2000
+
+SQL> update tbl_employee set doj='10-JAN'-2003 where eid=102;
+update tbl_employee set doj='10-JAN'-2003 where eid=102
+                                    *
+ERROR at line 1:
+ORA-00932: inconsistent datatypes: expected DATE got NUMBER
+
+
+SQL> alter table tbl_employee drop column doj;
+
+Table altered.
+
+SQL> select * from tbl_employee;
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       101 karthi                    40000
+       102 dharun                    40000
+       103 kabi                      40000
+       101 vimal                      6000
+       501                            2000
+
+SQL> alter table tbl_employee modify esalary number(7);
+
+Table altered.
+
+SQL> alter table tbl_employee modify esalary number(3);
+alter table tbl_employee modify esalary number(3)
+                                *
+ERROR at line 1:
+ORA-01440: column to be modified must be empty to decrease precision or scale
+
+
+SQL> alter table tbl_employee rename column esalary to esal;
+
+Table altered.
+
+SQL> select * from tbl_employee;
+
+       EID ENAME                      ESAL
+---------- -------------------- ----------
+       101 karthi                    40000
+       102 dharun                    40000
+       103 kabi                      40000
+       101 vimal                      6000
+       501                            2000
+
+SQL> rename tbl_employee to tbl_emp;
+
+Table renamed.
+
+SQL> desc tbl_emp;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EID                                                NUMBER(5)
+ ENAME                                              VARCHAR2(20)
+ ESAL                                               NUMBER(7)
+
+SQL> truncate table tbl_emp;
+
+Table truncated.
+
+SQL> select * from tbl_emp;
+
+no rows selected
+
+SQL> drop table tbl_emp;
+
+Table dropped.
+
+SQL> flasback table tbl_emp on before drop
+SP2-0734: unknown command beginning "flasback t..." - rest of line ignored.
+SQL> flasback table tbl_emp on before drop;
+SP2-0734: unknown command beginning "flasback t..." - rest of line ignored.
+SQL> flashback table tbl_emp on before drop;
+flashback table tbl_emp on before drop
+*
+ERROR at line 1:
+ORA-00439: feature not enabled: Flashback Table
+
+
+SQL>
