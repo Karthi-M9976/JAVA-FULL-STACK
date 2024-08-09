@@ -1,0 +1,79 @@
+
+SQL*Plus: Release 11.2.0.2.0 Production on Thu Aug 8 11:12:23 2024
+
+Copyright (c) 1982, 2014, Oracle.  All rights reserved.
+
+SQL> connect system;
+Enter password:
+Connected.
+SQL> create table department(dno number(5),dname varchar2(20));
+
+Table created.
+
+SQL> drop department;
+drop department
+     *
+ERROR at line 1:
+ORA-00950: invalid DROP option
+
+
+SQL> drop table department;
+
+Table dropped.
+
+SQL> create table department(dno number(5) primary key,dname varchar2(20));
+
+Table created.
+
+SQL> create table employee(eid number(5) primary key,ename varchar2(20),esalary number(5),dno number(5),foreign key(dno) references department(dno));
+
+Table created.
+
+SQL> insert into employee values(101,'Karthi',2000,10);
+insert into employee values(101,'Karthi',2000,10)
+*
+ERROR at line 1:
+ORA-02291: integrity constraint (SYSTEM.SYS_C007003) violated - parent key not
+found
+
+
+SQL> insert into department values(10,'CSE');
+
+1 row created.
+
+SQL> insert into employee values(101,'Karthi',2000,10);
+
+1 row created.
+
+SQL> insert into employee values(102,'Raj',3000,20);
+insert into employee values(102,'Raj',3000,20)
+*
+ERROR at line 1:
+ORA-02291: integrity constraint (SYSTEM.SYS_C007003) violated - parent key not
+found
+
+
+SQL> insert into employee values(102,'Raj',3000,10);
+
+1 row created.
+
+SQL> insert into employee(eid,ename,esalary) values(102,'Raj',3000);
+insert into employee(eid,ename,esalary) values(102,'Raj',3000)
+*
+ERROR at line 1:
+ORA-00001: unique constraint (SYSTEM.SYS_C007002) violated
+
+
+SQL> insert into employee(eid,ename,dno) values(103,'Vel',10);
+
+1 row created.
+
+SQL> select * from employee;
+
+       EID ENAME                   ESALARY        DNO
+---------- -------------------- ---------- ----------
+       101 Karthi                     2000         10
+       102 Raj                        3000         10
+       103 Vel                                     10
+
+SQL>

@@ -1,0 +1,306 @@
+
+SQL*Plus: Release 11.2.0.2.0 Production on Thu Aug 8 09:24:42 2024
+
+Copyright (c) 1982, 2014, Oracle.  All rights reserved.
+
+SQL>  insert into tbl_employee values (101,'karthi',40000);
+SP2-0640: Not connected
+SQL> system connect;
+SP2-0734: unknown command beginning "system con..." - rest of line ignored.
+SQL> connect system;
+Enter password:
+Connected.
+SQL>  insert into tbl_employee values (101,'karthi',40000);
+
+1 row created.
+
+SQL> insert into tbl_employee values (102,'dharun',40000);
+
+1 row created.
+
+SQL> insert into tbl_employee values (102,'kabi',45000);
+
+1 row created.
+
+SQL> insert into tbl_employee values (103,'john',47000);
+
+1 row created.
+
+SQL> select * from tbl_employee;
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       101 karthi                    40000
+       102 dharun                    40000
+       102 kabi                      45000
+       103 john                      47000
+
+SQL> insert into tbl_employee values (104,'Raj',46000);
+
+1 row created.
+
+SQL> alter table tbl_employee add dno number(3);
+
+Table altered.
+
+SQL> update tbl_employee set eid=104 where ename='kabi';
+
+1 row updated.
+
+SQL> update tbl
+  2
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL> update tbl_employee set dno=10 where eid=101;
+
+1 row updated.
+
+SQL> update tbl_employee set dno=20 where eid=102;
+
+1 row updated.
+
+SQL> update tbl_employee set dno=30 where eid=103;
+
+1 row updated.
+
+SQL> update tbl_employee set dno=40 where eid=104;
+
+2 rows updated.
+
+SQL> select * from tbl_employee;
+
+       EID ENAME                   ESALARY        DNO
+---------- -------------------- ---------- ----------
+       101 karthi                    40000         10
+       102 dharun                    40000         20
+       104 kabi                      45000         40
+       103 john                      47000         30
+       104 Raj                       46000         40
+
+SQL> select dno ,count (*) from tbl_employee group by dno;
+
+       DNO   COUNT(*)
+---------- ----------
+        30          1
+        20          1
+        40          2
+        10          1
+
+SQL> select dno ,count (*),sum(esalary),avg(esalary),min(esalary),max(esalary) from tbl_employee group
+ by dno;
+
+       DNO   COUNT(*) SUM(ESALARY) AVG(ESALARY) MIN(ESALARY) MAX(ESALARY)
+---------- ---------- ------------ ------------ ------------ ------------
+        30          1        47000        47000        47000        47000
+        20          1        40000        40000        40000        40000
+        40          2        91000        45500        45000        46000
+        10          1        40000        40000        40000        40000
+
+SQL> select dno ,count (*),sum(esalary),avg(esalary),min(esalary),max(esalary) from tbl_employee group by dno,eid;
+
+       DNO   COUNT(*) SUM(ESALARY) AVG(ESALARY) MIN(ESALARY) MAX(ESALARY)
+---------- ---------- ------------ ------------ ------------ ------------
+        20          1        40000        40000        40000        40000
+        30          1        47000        47000        47000        47000
+        10          1        40000        40000        40000        40000
+        40          2        91000        45500        45000        46000
+
+SQL> select eid ,count (*),sum(esalary),avg(esalary),min(esalary),max(esalary) from tbl_employee group
+ by dno,eid;
+
+       EID   COUNT(*) SUM(ESALARY) AVG(ESALARY) MIN(ESALARY) MAX(ESALARY)
+---------- ---------- ------------ ------------ ------------ ------------
+       102          1        40000        40000        40000        40000
+       103          1        47000        47000        47000        47000
+       101          1        40000        40000        40000        40000
+       104          2        91000        45500        45000        46000
+
+SQL> select eid ,count (*),sum(esalary),avg(esalary),min(esalary),max(esalary) from tbl_employee group by eid;
+
+       EID   COUNT(*) SUM(ESALARY) AVG(ESALARY) MIN(ESALARY) MAX(ESALARY)
+---------- ---------- ------------ ------------ ------------ ------------
+       102          1        40000        40000        40000        40000
+       101          1        40000        40000        40000        40000
+       104          2        91000        45500        45000        46000
+       103          1        47000        47000        47000        47000
+
+SQL> update tbl_employee set dno=10 where eid=102;
+
+1 row updated.
+
+SQL> update tbl_employee set dno=30 where eid=103;
+
+1 row updated.
+
+SQL> update tbl_employee set dno=20 where eid=104;
+
+2 rows updated.
+
+SQL> select * from tbl_employee;
+
+       EID ENAME                   ESALARY        DNO
+---------- -------------------- ---------- ----------
+       101 karthi                    40000         10
+       102 dharun                    40000         10
+       104 kabi                      45000         20
+       103 john                      47000         30
+       104 Raj                       46000         20
+
+SQL> select dno ,count (*),sum(esalary),avg(esalary),min(esalary),max(esalary) from tbl_employee group by dno order by dno;
+
+       DNO   COUNT(*) SUM(ESALARY) AVG(ESALARY) MIN(ESALARY) MAX(ESALARY)
+---------- ---------- ------------ ------------ ------------ ------------
+        10          2        80000        40000        40000        40000
+        20          2        91000        45500        45000        46000
+        30          1        47000        47000        47000        47000
+
+SQL> select dno ,count (*),sum(esalary),avg(esalary),min(esalary),max(esalary) from tbl_employee group by dno order by dno having min(esalary) > 2000 order by dno;
+select dno ,count (*),sum(esalary),avg(esalary),min(esalary),max(esalary) from tbl_employee group by dno order by dno having min(esalary) > 2000 order by dno
+
+                *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended
+
+
+SQL> select dno ,count (*),sum(esalary),avg(esalary),min(esalary),max(esalary) from tbl_employee group by  dno having min(esalary) > 2000 order by dno;
+
+       DNO   COUNT(*) SUM(ESALARY) AVG(ESALARY) MIN(ESALARY) MAX(ESALARY)
+---------- ---------- ------------ ------------ ------------ ------------
+        10          2        80000        40000        40000        40000
+        20          2        91000        45500        45000        46000
+        30          1        47000        47000        47000        47000
+
+SQL> create table tbl_student(reg_no number(5) primary key,stud_name varchar2(20) not null,stud_age nu
+mber(3) check(stud_age > 0),stud_email varchar2(20) unique,stud_location varchar2(20) default 'erode')
+;
+
+Table created.
+
+SQL> insert into tbl_student(1,'karthi',-10,'karthimek0@gmail.com');
+insert into tbl_student(1,'karthi',-10,'karthimek0@gmail.com')
+                        *
+ERROR at line 1:
+ORA-00928: missing SELECT keyword
+
+
+SQL> insert into tbl_student values(1,'karthi',-10,'karthimek0@gmail.com');
+insert into tbl_student values(1,'karthi',-10,'karthimek0@gmail.com')
+            *
+ERROR at line 1:
+ORA-00947: not enough values
+
+
+SQL> insert into tbl_student values(1,'karthi',-10,'karthimek0@gmail.com'.'erode');
+insert into tbl_student values(1,'karthi',-10,'karthimek0@gmail.com'.'erode')
+                                                                    *
+ERROR at line 1:
+ORA-00917: missing comma
+
+
+SQL> insert into tbl_student values(1,'karthi',-10,'karthimek0@gmail.com','erode');
+insert into tbl_student values(1,'karthi',-10,'karthimek0@gmail.com','erode')
+*
+ERROR at line 1:
+ORA-02290: check constraint (SYSTEM.SYS_C006998) violated
+
+
+SQL> insert into tbl_student values(1,'null',10,'karthimek0@gmail.com',null);
+
+1 row created.
+
+SQL> insert into tbl_student values(1,null,10,'karthimek0@gmail.com',null);
+insert into tbl_student values(1,null,10,'karthimek0@gmail.com',null)
+                                 *
+ERROR at line 1:
+ORA-01400: cannot insert NULL into ("SYSTEM"."TBL_STUDENT"."STUD_NAME")
+
+
+SQL> insert into tbl_student values(1,'Raj',10,'karthimek0@gmail.com',null);
+insert into tbl_student values(1,'Raj',10,'karthimek0@gmail.com',null)
+*
+ERROR at line 1:
+ORA-00001: unique constraint (SYSTEM.SYS_C006999) violated
+
+
+SQL> insert into tbl_student values(1,'Raj',10,'karthimek00@gmail.com',null);
+insert into tbl_student values(1,'Raj',10,'karthimek00@gmail.com',null)
+                                          *
+ERROR at line 1:
+ORA-12899: value too large for column "SYSTEM"."TBL_STUDENT"."STUD_EMAIL"
+(actual: 21, maximum: 20)
+
+
+SQL> insert into tbl_student values(1,'Raj',10,'karthi@gmail.com',null);
+insert into tbl_student values(1,'Raj',10,'karthi@gmail.com',null)
+*
+ERROR at line 1:
+ORA-00001: unique constraint (SYSTEM.SYS_C006999) violated
+
+
+SQL> insert into tbl_student values(2,'Raj',10,'karthi@gmail.com',null);
+
+1 row created.
+
+SQL> insert into tbl_student values(3,'Raj',10,'karthi1@gmail.com',null);
+
+1 row created.
+
+SQL> select * tbl_student;
+select * tbl_student
+         *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL> select * from tbl_student;
+
+    REG_NO STUD_NAME              STUD_AGE STUD_EMAIL
+---------- -------------------- ---------- --------------------
+STUD_LOCATION
+--------------------
+         1 null                         10 karthimek0@gmail.com
+
+
+         2 Raj                          10 karthi@gmail.com
+
+
+         3 Raj                          10 karthi1@gmail.com
+
+
+
+SQL> insert into tbl_student (reg_no, stud_name, stud_age, stud_email) values(4,'Raj',12,'karthi12@gma
+il.com');
+
+1 row created.
+
+SQL> select * from tbl_student where reg_no=4;
+
+    REG_NO STUD_NAME              STUD_AGE STUD_EMAIL
+---------- -------------------- ---------- --------------------
+STUD_LOCATION
+--------------------
+         4 Raj                          12 karthi12@gmail.com
+erode
+
+
+SQL> insert into tbl_student values(3,null,10,'karthi1@gmail.com',null);
+insert into tbl_student values(3,null,10,'karthi1@gmail.com',null)
+                                 *
+ERROR at line 1:
+ORA-01400: cannot insert NULL into ("SYSTEM"."TBL_STUDENT"."STUD_NAME")
+
+
+SQL> insert into tbl_student values(3,null,-10,'karthi@gmail.com',null);
+insert into tbl_student values(3,null,-10,'karthi@gmail.com',null)
+                                 *
+ERROR at line 1:
+ORA-01400: cannot insert NULL into ("SYSTEM"."TBL_STUDENT"."STUD_NAME")

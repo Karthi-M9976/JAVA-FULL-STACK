@@ -1,0 +1,57 @@
+SQL> create view myview as select * from tbl_employee where dno=10;
+
+View created.
+
+SQL> select * from myview;
+
+       EID ENAME                   ESALARY        DNO
+---------- -------------------- ---------- ----------
+       101 karthi                    40000         10
+       102 dharun                    40000         10
+
+SQL> update myview set esalary=7000 where eid=101;
+
+1 row updated.
+
+SQL> select * from myview;
+
+       EID ENAME                   ESALARY        DNO
+---------- -------------------- ---------- ----------
+       101 karthi                     7000         10
+       102 dharun                    40000         10
+
+SQL> select * from tbl_employee;
+
+       EID ENAME                   ESALARY        DNO
+---------- -------------------- ---------- ----------
+       101 karthi                     7000         10
+       102 dharun                    40000         10
+       104 kabi                      45000         20
+       103 john                      47000         30
+       104 Raj                       46000         20
+
+SQL> drop view myview;
+
+View dropped.
+
+SQL> select eid as "Employee id" ,ename "Employee Name" from tbl_empoyee;
+select eid as "Employee id" ,ename "Employee Name" from tbl_empoyee
+                                                        *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> select eid as "Employee id" ,ename "Employee Name" from empoyee;
+select eid as "Employee id" ,ename "Employee Name" from empoyee
+                                                        *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> select eid as "Employee id" ,ename "Employee Name" from employee;
+
+Employee id Employee Name
+----------- --------------------
+        101 Karthi
+        102 Raj
+        103 Vel
