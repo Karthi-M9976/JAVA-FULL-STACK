@@ -1,0 +1,19 @@
+<!-- <h1>Welcome to angular</h1>
+<h1>Two way Binding Example</h1>
+enter your first name {{fname}} -->
+
+<h1>Angular Structural Directive</h1>
+<button (click)="changeFlag()">Show or Hide</button>
+<div *ngIf="flag" [ngStyle]="myStyle">
+   <ul>
+    <li *ngFor="let vec of vehicles" (click)="setSelectedItem(vec)">{{vec}}</li>
+   </ul>
+   <br>
+   <b>You Have Selected : {{SelectedVehicle}}</b>
+   <br>
+   <div [ngSwitch]="SelectedVehicle">
+    <font color="blue" *ngSwitch="'car'">car</font>
+    <font color="blue" *ngSwitch="'bike'">car</font>
+    <font color="blue" *ngSwitch="'bus'">car</font>
+   </div>
+</div>

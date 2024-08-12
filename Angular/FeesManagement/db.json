@@ -1,0 +1,10 @@
+{
+    "fees":[
+        {
+            "id":"01",
+            "name":"Fees 1",
+            "amount":1000.00,
+            "status":"paid"
+        }
+    ]
+}

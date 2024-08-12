@@ -1,0 +1,89 @@
+<div id="header"><h1>
+  FEES MANAGEMENT SYSTEM
+</h1>
+</div>
+<br>
+<div id="side1">
+  <div id="s1">
+    <form #myForm="ngForm">
+      <div class="form-group">
+          <label for="Student Id" >
+              Student Id
+          </label>
+          <input type="text" class="form-control" name="stdId"  #stdid="ngModel" ngModel required pattern="[0-9]{4}"/>
+      </div>
+      <div *ngIf="stdid.touched">
+        <div *ngIf="stdid.errors?.['required']">
+            <p style="color: red;">Employee Id Required</p>
+        </div>
+        <div *ngIf="stdid.errors?.['pattern']">
+            <b style="color: red;">Enter correct id</b>
+        </div>
+    </div>
+      <br>
+      
+      <div class="form-group">
+          <label for="Student Name">
+              Student Name
+          </label>
+          <input type="text" 
+                 class="form-control" 
+                 name="Student Name" 
+                 #stdname="ngModel" ngModel 
+                  />
+                  <div *ngIf="stdname.touched">
+                    <div *ngIf="stdname.errors?.['required']">
+                        <p style="color: red;">Employee Id Required</p>
+                    </div>
+                    <div *ngIf="stdname.errors?.['pattern']">
+                        <b style="color: red;">Enter correct id</b>
+                    </div>
+                </div>
+      </div>
+      
+      <br>
+      <div class="form-group">
+          <label for="Fees Pending">
+              Fees Pending
+          </label>
+          <input type="text" 
+                 class="form-control" 
+                 name="stdpen" 
+                 #stdpen="ngModel" ngModel
+                  />
+      </div>
+      <br>
+      <div class="form-group">
+        <label for="Fees status">
+            Fees status
+        </label>
+        <input type="text" 
+               class="form-control" 
+               name="stdsts" #stdsts="ngModel" ngModel />
+    </div>
+    <br>
+                                    
+      <button class="btn btn-success"  >
+          Insert 
+      </button>
+  &nbsp;&nbsp;
+      <button class="btn btn-primary"  >
+          Update 
+      </button>&nbsp;&nbsp;
+      <button class="btn btn-danger" >
+          Delete 
+      </button>&nbsp;&nbsp;
+      <button class="btn btn-warning"  >
+          Find 
+      </button>
+      &nbsp;&nbsp;
+      <button class="btn btn-info"  >
+          Find All
+      </button>
+</form>
+    </div>
+  <div id="s2">
+      <h1>Student Fees Details</h1>
+  </div>
+
+</div>
